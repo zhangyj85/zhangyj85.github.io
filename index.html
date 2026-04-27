@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Yongjian Zhang's Homepage" />
+  <meta name="author" content="Yongjian Zhang" />
+  <title>Yongjian Zhang</title>
+
+  <style>
+    :root {
+      --primary: #7b1113;
+      --primary-dark: #5f0c0f;
+      --text: #111111;
+      --muted: #555555;
+      --border: #e7dede;
+      --max-width: 1120px;
+      --nav-height: 64px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background: #ffffff;
+      line-height: 1.62;
+      font-size: 17px;
+    }
+
+    a {
+      color: #1a4de8;
+      text-decoration: none;
+      border-bottom: 1px dotted currentColor;
+    }
+
+    a:hover {
+      color: var(--primary);
+    }
+
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      height: var(--nav-height);
+      background: var(--primary);
+      border-bottom: 4px solid var(--primary-dark);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      height: 100%;
+      margin: 0 auto;
+      padding: 0 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .site-title {
+      color: #ffffff;
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      list-style: none;
+    }
+
+    .nav-link {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 500;
+      border-bottom: none;
+      transition: all 0.18s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      background: #ffffff;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .page-wrap {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    section {
+      scroll-margin-top: calc(var(--nav-height) + 24px);
+    }
+
+    .homepage {
+      padding-top: 54px;
+      padding-bottom: 70px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(280px, 390px) 1fr;
+      gap: 88px;
+      align-items: stretch;
+      justify-content: center;
+    }
+
+    .hero-photo-wrap,
+    .hero-info {
+      height: 460px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-photo {
+      display: block;
+      width: 100%;
+      max-width: 390px;
+      height: 460px;
+      object-fit: cover;
+      border: none;
+      box-shadow: none;
+      background: #f3f3f3;
+    }
+
+    .hero-info {
+      flex-direction: column;
+      text-align: center;
+      padding: 8px 0;
+    }
+
+    .hero-name {
+      font-size: 34px;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      letter-spacing: 0.4px;
+    }
+
+    .chinese-name-img {
+      max-width: 150px;
+      max-height: 54px;
+      object-fit: contain;
+      margin-bottom: 22px;
+    }
+
+    .hero-line {
+      font-size: 22px;
+      line-height: 1.42;
+      margin-bottom: 6px;
+    }
+
+    .hero-line.small {
+      font-size: 20px;
+    }
+
+    .hero-email {
+      margin-top: 28px;
+      font-size: 21px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+    }
+
+    .email-icon-img {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+    }
+
+    .profile-links {
+      margin-top: 14px;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .profile-link-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #1a4de8;
+      border-bottom: none;
+    }
+
+    .profile-link-item span {
+      border-bottom: 1px dotted currentColor;
+    }
+
+    .profile-link-icon {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+    }
+
+    .link-separator {
+      color: #777777;
+      margin: 0 4px;
+    }
+
+    .last-updated {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .home-description {
+      margin-top: 72px;
+      font-size: 21px;
+      line-height: 1.55;
+      text-align: justify;
+    }
+
+    .content-section {
+      padding: 44px 0 22px;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-title {
+      color: var(--primary);
+      font-size: 30px;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 24px;
+      padding-bottom: 8px;
+      border-bottom: 3px solid var(--primary);
+    }
+
+    .degree-item,
+    .honor-item {
+      display: grid;
+      gap: 18px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .degree-item {
+      grid-template-columns: 150px 1fr;
+      font-size: 18px;
+    }
+
+    .honor-item {
+      grid-template-columns: 96px 1fr;
+    }
+
+    .degree-year,
+    .honor-year {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .honor-list {
+      list-style: none;
+    }
+
+    .year-filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 6px 0 28px;
+    }
+
+    .year-button {
+      border: 1px solid var(--primary);
+      background: #ffffff;
+      color: var(--primary);
+      padding: 7px 16px;
+      border-radius: 999px;
+      font-family: inherit;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .year-button:hover,
+    .year-button.active {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .publication-year {
+      margin-top: 26px;
+      scroll-margin-top: calc(var(--nav-height) + 24px);
+    }
+
+    .publication-year h3 {
+      color: var(--primary);
+      font-size: 23px;
+      margin-bottom: 14px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .publication-item {
+      padding: 16px 0 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .paper-title {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.38;
+      color: #111111;
+      margin-bottom: 3px;
+    }
+
+    .paper-authors {
+      font-size: 16px;
+      color: #222222;
+      margin-bottom: 2px;
+    }
+
+    .paper-venue {
+      font-size: 16px;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .paper-links {
+      margin-top: 6px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .paper-links a {
+      font-size: 14px;
+      color: var(--primary);
+      border-bottom: 1px dotted var(--primary);
+    }
+
+    .footer {
+      max-width: var(--max-width);
+      margin: 40px auto 0;
+      padding: 24px 28px 42px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 860px) {
+      .top-nav {
+        height: auto;
+      }
+
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 12px 20px;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+      }
+
+      .nav-link {
+        padding: 6px 10px;
+        font-size: 14px;
+      }
+
+      .page-wrap {
+        padding: 0 20px;
+      }
+
+      .homepage {
+        padding-top: 32px;
+        padding-bottom: 48px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .hero-photo-wrap,
+      .hero-info {
+        height: auto;
+      }
+
+      .hero-photo {
+        max-width: 320px;
+        height: 390px;
+      }
+
+      .hero-name {
+        font-size: 30px;
+      }
+
+      .hero-line {
+        font-size: 19px;
+      }
+
+      .hero-line.small,
+      .hero-email,
+      .profile-links {
+        font-size: 18px;
+      }
+
+      .home-description {
+        margin-top: 44px;
+        font-size: 18px;
+        text-align: left;
+      }
+
+      .section-title {
+        font-size: 26px;
+      }
+
+      .degree-item,
+      .honor-item {
+        grid-template-columns: 1fr;
+        gap: 3px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="top-nav">
+    <div class="nav-inner">
+      <div class="site-title">Yongjian Zhang</div>
+
+      <ul class="nav-links">
+        <li><a class="nav-link active" href="#homepage" data-target="homepage">Homepage</a></li>
+        <li><a class="nav-link" href="#degree" data-target="degree">Degree</a></li>
+        <li><a class="nav-link" href="#publications" data-target="publications">Publications</a></li>
+        <li><a class="nav-link" href="#honors" data-target="honors">Honors</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="page-wrap">
+    <section id="homepage" class="homepage">
+      <div class="hero">
+        <div class="hero-photo-wrap">
+          <img class="hero-photo" src="assets/profile.jpg" alt="Yongjian Zhang" />
+        </div>
+
+        <div class="hero-info">
+          <div class="hero-name">Yongjian Zhang</div>
+
+          <img class="chinese-name-img" src="assets/chinese-name.png" alt="Chinese name" />
+
+          <div class="hero-line">Ph.D. Student</div>
+          <div class="hero-line small">School of Electronics and Communication Engineering</div>
+          <div class="hero-line small">Shenzhen Campus of Sun Yat-sen University</div>
+          <div class="hero-line small">Sun Yat-sen University (SYSU)</div>
+
+          <div class="hero-line small">
+            <a href="https://sysu-sail.net/#/" target="_blank" rel="noopener">
+              Spatial Artificial Intelligence Lab (SAIL)
+            </a>
+          </div>
+
+          <div class="hero-email">
+            <img class="email-icon-img" src="assets/email.svg" alt="Email" />
+            <a href="mailto:zhangyj85@mail2.sysu.edu.cn">zhangyj85@mail2.sysu.edu.cn</a>
+          </div>
+
+          <div class="profile-links">
+            <a class="profile-link-item" href="https://github.com/zhangyj85" target="_blank" rel="noopener">
+              <img class="profile-link-icon" src="assets/github.svg" alt="Github" />
+              <span>Github</span>
+            </a>
+
+            <span class="link-separator">|</span>
+
+            <a class="profile-link-item" href="https://scholar.google.com/citations?user=odh1uA4AAAAJ&hl=zh-CN" target="_blank" rel="noopener">
+              <img class="profile-link-icon" src="assets/google-scholar.svg" alt="Google Scholar" />
+              <span>Google Scholar</span>
+            </a>
+          </div>
+
+          <div class="last-updated">
+            <span id="last-updated">Loading...</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="home-description">
+        Yongjian Zhang received the B.Eng. degree from Sun Yat-sen University (SYSU) in 2021. 
+        He is currently pursuing the Ph.D. degree with the School of Electronics and Communication Engineering at SYSU. 
+        His current research focuses on 3D reconstruction, including stereo matching, depth estimation, and dense matching.
+      </div>
+    </section>
+
+    <section id="degree" class="content-section">
+      <h2 class="section-title">Degree</h2>
+
+      <div class="degree-item">
+        <div class="degree-year">2021–Present</div>
+        <div>Ph.D. Student, Sun Yat-sen University, Shenzhen, China</div>
+      </div>
+
+      <div class="degree-item">
+        <div class="degree-year">2017–2021</div>
+        <div>B.Eng., Sun Yat-sen University, Guangzhou, China</div>
+      </div>
+    </section>
+
+    <section id="publications" class="content-section">
+      <h2 class="section-title">Publications</h2>
+
+      <div id="year-filter" class="year-filter"></div>
+
+      <div id="publication-list">
+        <div class="publication-year" data-year="2025" id="pub-2025">
+          <h3>2025</h3>
+
+          <div class="publication-item">
+            <div class="paper-title">
+              PanMatch: Unleashing the Potential of Large Vision Models for Unified Matching Models
+            </div>
+            <div class="paper-authors">
+              <strong>Yongjian Zhang</strong>, Longguang Wang, Kunhong Li, Ye Zhang, Yun Wang, Liang Lin, Yulan Guo*
+            </div>
+            <div class="paper-venue">
+              arXiv preprint arXiv:2507.08400.
+            </div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/pdf/2507.08400" target="_blank" rel="noopener">Paper</a>
+              <a href="https://github.com/zhangyj85/PanMatch" target="_blank" rel="noopener">Code</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="publication-year" data-year="2024" id="pub-2024">
+          <h3>2024</h3>
+
+          <div class="publication-item">
+            <div class="paper-title">
+              Learning Representations from Foundation Models for Domain Generalized Stereo Matching
+            </div>
+            <div class="paper-authors">
+              <strong>Yongjian Zhang</strong>, Longguang Wang, Kunhong Li, Yun Wang, Yulan Guo*
+            </div>
+            <div class="paper-venue">
+              European Conference on Computer Vision (ECCV), 2024.
+            </div>
+            <div class="paper-links">
+              <a href="https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/05841.pdf" target="_blank" rel="noopener">Paper</a>
+              <a href="https://github.com/zhangyj85/FormerStereo_release" target="_blank" rel="noopener">Code</a>
+              <a href="https://zhangyj85.github.io/FormerStereo.github.io/" target="_blank" rel="noopener">Project</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="publication-year" data-year="2022" id="pub-2022">
+          <h3>2022</h3>
+
+          <div class="publication-item">
+            <div class="paper-title">
+              SLFNet: A Stereo and LiDAR Fusion Network for Depth Completion
+            </div>
+            <div class="paper-authors">
+              <strong>Yongjian Zhang</strong>, Longguang Wang, Kunhong Li, Zhiheng Fu, Yulan Guo*
+            </div>
+            <div class="paper-venue">
+              IEEE Robotics and Automation Letters (RA-L), 2022.
+            </div>
+            <div class="paper-links">
+              <a href="https://ieeexplore.ieee.org/abstract/document/9830848" target="_blank" rel="noopener">Paper</a>
+              <a href="https://github.com/zhangyj85/SLFNet-A-Stereo-and-LiDAR-Fusion-Network-for-Depth-Completion" target="_blank" rel="noopener">Code</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="honors" class="content-section">
+      <h2 class="section-title">Honors</h2>
+
+      <ul class="honor-list">
+        <li class="honor-item">
+          <div class="honor-year">2023</div>
+          <div>
+            The Third Prize, The 1st Yixian Cup South China Universities “Intelligence+” Innovation Competition
+            [<a href="https://sece.sysu.edu.cn/yixiancup/yixiancup02/1409325.htm" target="_blank" rel="noopener">link</a>]
+          </div>
+        </li>
+
+        <li class="honor-item">
+          <div class="honor-year">2022</div>
+          <div>National Scholarship for Graduate Students</div>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    © <span id="copyright-year"></span> Yongjian Zhang.
+  </footer>
+
+  <script>
+    function formatDate(date) {
+      if (!(date instanceof Date) || isNaN(date)) {
+        return "(updated in Unknown)";
+      }
+
+      const monthNames = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+      ];
+
+      return "(updated in " + monthNames[date.getMonth()] + " " + date.getFullYear() + ")";
+    }
+
+    function initLastUpdated() {
+      const updatedElement = document.getElementById("last-updated");
+
+      fetch(window.location.href, { method: "HEAD", cache: "no-store" })
+        .then(function(response) {
+          const serverDate = response.headers.get("Last-Modified");
+          updatedElement.textContent = formatDate(new Date(serverDate || document.lastModified));
+        })
+        .catch(function() {
+          updatedElement.textContent = formatDate(new Date(document.lastModified));
+        });
+    }
+
+    function setActiveNav(activeId) {
+      document.querySelectorAll(".nav-link").forEach(function(link) {
+        link.classList.toggle("active", link.dataset.target === activeId);
+      });
+    }
+
+    function scrollToSection(sectionId) {
+      const target = document.getElementById(sectionId);
+
+      if (!target) {
+        return;
+      }
+
+      if (sectionId === "publications") {
+        showAllPublications(false);
+      }
+
+      history.pushState(null, "", "#" + sectionId);
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      setActiveNav(sectionId);
+    }
+
+    function initNavigation() {
+      document.querySelectorAll(".nav-link").forEach(function(link) {
+        link.addEventListener("click", function(event) {
+          event.preventDefault();
+          scrollToSection(link.dataset.target);
+        });
+      });
+    }
+
+    function initPublicationYears() {
+      const filter = document.getElementById("year-filter");
+      const yearSections = Array.from(document.querySelectorAll(".publication-year"));
+
+      if (!filter || yearSections.length === 0) {
+        return;
+      }
+
+      const allButton = createYearButton("All", "all");
+      allButton.addEventListener("click", function() {
+        showAllPublications(true);
+      });
+      filter.appendChild(allButton);
+
+      yearSections
+        .map(function(section) {
+          return section.dataset.year;
+        })
+        .sort(function(a, b) {
+          return Number(b) - Number(a);
+        })
+        .forEach(function(year) {
+          const button = createYearButton(year, year);
+          button.addEventListener("click", function() {
+            showPublicationsByYear(year);
+          });
+          filter.appendChild(button);
+        });
+    }
+
+    function createYearButton(text, year) {
+      const button = document.createElement("button");
+      button.className = year === "all" ? "year-button active" : "year-button";
+      button.textContent = text;
+      button.dataset.year = year;
+      return button;
+    }
+
+    function updateYearButtonState(activeYear) {
+      document.querySelectorAll(".year-button").forEach(function(button) {
+        button.classList.toggle("active", button.dataset.year === activeYear);
+      });
+    }
+
+    function showAllPublications(shouldScroll) {
+      document.querySelectorAll(".publication-year").forEach(function(section) {
+        section.style.display = "block";
+      });
+
+      updateYearButtonState("all");
+
+      if (shouldScroll) {
+        document.getElementById("publications").scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+    }
+
+    function showPublicationsByYear(year) {
+      document.querySelectorAll(".publication-year").forEach(function(section) {
+        section.style.display = section.dataset.year === year ? "block" : "none";
+      });
+
+      updateYearButtonState(year);
+
+      document.getElementById("pub-" + year).scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      initLastUpdated();
+      initNavigation();
+      initPublicationYears();
+
+      document.getElementById("copyright-year").textContent = new Date().getFullYear();
+
+      const initialHash = window.location.hash.replace("#", "");
+      if (initialHash && document.getElementById(initialHash)) {
+        setTimeout(function() {
+          scrollToSection(initialHash);
+        }, 100);
+      }
+    });
+
+    window.addEventListener("popstate", function() {
+      const targetId = window.location.hash.replace("#", "") || "homepage";
+      if (document.getElementById(targetId)) {
+        scrollToSection(targetId);
+      }
+    });
+  </script>
+</body>
+</html>
